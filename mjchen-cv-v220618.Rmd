@@ -1,0 +1,302 @@
+---
+name: Mark J Chen
+docname: "Resume"
+fontawesome: yes
+address: "Memphis, Tennessee"
+phone: "+1 858 699 5771"
+email: "mjchen.gene@gmail.com"
+github: "markgene.github.io"
+date: "`r format(Sys.time(), '%B %Y')`"
+output: function(...) {source('price_entries.R');vitae:::set_entry_formats(price_entries);vitae::cv_document(..., template = "pricetemplate.tex", citation_package = "biblatex")}
+---
+
+```{r setup, include=FALSE}
+# To save log files
+# rmarkdown::render("resume/nprice_resume.Rmd", clean = FALSE)
+
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(tidyverse)
+library(vitae)
+library(lubridate)
+library(glue)
+library(rlang)
+```
+
+```{r loadData}
+# Education
+education.tb <- rorcid::orcid_educations("0000-0003-1169-563X") |>
+  purrr::map(purrr::pluck, "affiliation-group", "summaries") |> 
+  purrr::flatten_dfr()
+colnames(education.tb) <- make.names(colnames(education.tb))
+education.tb %>%
+  dplyr::mutate(begin_date = paste(education.summary.start.date.year.value, education.summary.start.date.month.value, "01", sep = "-")) %>%
+  dplyr::mutate(begin_date = as.Date(begin_date)) %>%
+  dplyr::mutate(end_date = paste(education.summary.end.date.year.value, education.summary.end.date.month.value, "01", sep = "-")) %>%
+  # pull(end_date)
+  dplyr::mutate(end_date = as.Date(ifelse(end_date == "NA-NA-01", NA, end_date))) %>%
+  arrange(desc(begin_date)) %>%
+  dplyr::mutate(education.summary.put.code = as.character(education.summary.put.code)) -> education.tb
+
+# Job titles
+job.titles.tb <- rorcid::orcid_employments("0000-0003-1169-563X") |>
+  purrr::map(purrr::pluck, "affiliation-group", "summaries") |> 
+  purrr::flatten_dfr()
+colnames(job.titles.tb) <- make.names(colnames(job.titles.tb))
+job.titles.tb %>%
+  dplyr::mutate(begin_date = paste(employment.summary.start.date.year.value, employment.summary.start.date.month.value, "01", sep = "-")) %>%
+  dplyr::mutate(begin_date = as.Date(begin_date)) %>%
+  dplyr::mutate(end_date = paste(employment.summary.end.date.year.value, employment.summary.end.date.month.value, "01", sep = "-")) %>%
+  # pull(end_date)
+  dplyr::mutate(end_date = as.Date(ifelse(end_date == "NA-NA-01", NA, end_date))) %>%
+  arrange(desc(begin_date)) %>%
+  dplyr::mutate(employment.summary.put.code = as.character(employment.summary.put.code)) -> job.titles.tb
+
+# Skills
+skills <- data.table::fread("skills.csv",
+                            encoding = "UTF-8") %>%
+  as_tibble() 
+
+# Job descriptions
+job.descriptions <-
+  data.table::fread("job-descriptions.csv",
+                    encoding = "UTF-8") %>%
+  as_tibble() %>%
+  dplyr::mutate(job.id = as.character(job.id))
+
+# Publications
+publication.tb <- rorcid::orcid_works("0000-0003-1169-563X") |>
+  purrr::flatten_dfr()
+colnames(publication.tb) <- make.names(colnames(publication.tb))
+```
+
+# Education
+
+```{r education, results = "asis"}
+
+# Merge joint PhD entries
+# education.tb %>%
+#   left_join(job.descriptions, by = c("education.summary.put.code" = "job.id")) %>%
+#   mutate(why = accomplishments) %>%
+#   arrange(desc(education.summary.end.date.year.value), education.summary.start.date.year.value) %>%
+#   mutate(what = education.summary.role.title,
+#          when = paste(education.summary.start.date.year.value, education.summary.end.date.year.value, sep = " - "),
+#          with = education.summary.organization.name,
+#          where = "China"
+#          # where = glue("{city}, {region}, {country}")
+#         ) %>% 
+#   # Join job descriptions
+#   select(what, when, with, where, why) %>% 
+#   # group_by(what, when) %>% 
+#   # summarize(what = nth(what, 1),
+#   #           when = nth(when, 1),
+#   #           with = if_else(n() > 1, glue("{nth(with, 1)} and {nth(with, 2)}"), nth(with, 1)),
+#   #           where = if_else(n() > 1, glue("{nth(where, 1)} and {nth(where, 2)}"), nth(with, 1)),
+#   #           .groups = "drop") %>% 
+#   arrange(desc(when)) %>% 
+#   detailed_entries(
+#     what,
+#     when,
+#     # with,
+#     where,
+#     why,
+#     .protect = F
+#   )
+
+education.tb %>% 
+  # Join job descriptions
+  left_join(job.descriptions, by = c("education.summary.put.code" = "job.id")) %>%
+  # Arrange by descending begin date
+  arrange(desc(education.summary.start.date.year.value)) %>% 
+  dplyr::mutate(accomplishments = ifelse(accomplishments == "", NA, accomplishments)) %>%
+  dplyr::mutate(education.summary.department.name = ifelse(education.summary.put.code %in% c("17872201", "577519"), "", education.summary.department.name)) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = education.summary.role.title,
+    when = as.character(
+      glue("{month(begin_date, label = TRUE, abbr = TRUE)} {year(begin_date)} - 
+           {if_else(!is.na(end_date), 
+           paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
+    with = glue("{employer.desc}"),
+    where = glue("{education.summary.department.name}"),
+    # where = glue(" {education.summary.organization.address.city}, {education.summary.organization.address.region}, {education.summary.organization.address.country}"),
+    why = accomplishments)
+```
+
+# Experience
+
+```{r experience}
+job.titles.tb %>% 
+  # Join job descriptions
+  left_join(job.descriptions, by = c("employment.summary.put.code" = "job.id")) %>%
+  # Arrange by descending begin date
+  arrange(desc(employment.summary.start.date.year.value)) %>% 
+  dplyr::mutate(accomplishments = ifelse(accomplishments == "", NA, accomplishments)) %>%
+  # dplyr::mutate(employment.summary.department.name = ifelse(employment.summary.put.code %in% c("17872201", "577519"), "", employment.summary.department.name)) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = employment.summary.role.title,
+    when = as.character(
+      glue("{month(begin_date, label = TRUE, abbr = TRUE)} {year(begin_date)} - 
+           {if_else(!is.na(end_date), 
+           paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
+    with = glue("{employer.desc}"),
+    where = glue("{employment.summary.department.name}"),
+    # where = glue(" {employment.summary.organization.address.city}, {employment.summary.organization.address.region}, {employment.summary.organization.address.country}"),
+    why = accomplishments)
+```
+
+# Skills
+
+```{r}
+skills_formatted <- skills %>%
+  dplyr::mutate(details = ifelse(details == "CUT&RUN", "CUT\\&RUN", details)) %>%
+  mutate(skill = if_else(is.na(details)|details=="", glue("{skill}"), glue("{skill} ({details})"))) %>% 
+  group_by(group_id, group) %>%
+  summarize(skills = glue_collapse(skill, sep = " $\\bullet$ ")) %>%
+  dplyr::select(-group_id) %>%
+  dplyr::ungroup()
+  
+```
+
+```{r, results='asis', width = 40000}
+
+cat("\\begin{itemize}\n")
+for (group in skills_formatted$group) {
+  cat(
+    "\\item[\\ding{109}]",
+    glue("\\textbf{<<tools::toTitleCase(group)>>}:", .open = "<<", .close = ">>"),
+    filter(skills_formatted, group == !!group)$skills,
+    "\n"
+  )
+}
+
+cat("\n\\end{itemize}\n")
+```
+
+
+
+\hfill\break
+
+# Publications
+
+1. A. Guo, H. Huang, Z. Zhu, M. J. Chen, H. Shi, P. Sharma, J. P. Connelly, S. Liedmann, Y. Dhungana, Z. Li, D. Haydar, M. Yang, H. Beere, J. T. Yustein, C. DeRenzo, S. M. Pruett-Miller, G. Krenciute, C. W. M. Roberts, H. Chi, D. R. Green. The SWI/SNF canonical BAF complex and c-Myc cooperate to promote early fate decisions in CD8+ T cells. Accepted by Nature.
+1. H. Kalkavan, M. J. Chen, J. C. Crawford, G. Quarato, P. Fitzgerald, S. Tait, C. R. Goding, D. R. Green. Sublethal cytochrome-c release generates drug-tolerant persisters by activation of the HRI-ATF4 pathway. Accepted by Cell.
+1. S. Liedmann, X. Liu, C. S. Guy, J. C. Crawford, D. A. Rodriguez, D. Kuzuoglu-Ozturk, A. Guo, J. Temirov, M. J. Chen, D. Ruggero, H. Zhang, P. G. Thomas, D. R. Green. Molecular Cell (2022).
+1. H. Zhang, Q. Zhu, J. Cui, Y. Wang, M. J. Chen, X. Guo, V. Tagliabracci, J. Dixon, J. Xiao. Structure and evolution of the Fam20 kinases. Nature Communications (2018) 9:1218.
+1. X. Guo, X. Huang, M. J. Chen. Reversible phosphorylation of the 26S proteasome. Protein & Cell (2017) 8(4): 255-272.
+1. M. J. Chen, J. Dixon, G. Manning. Genomics and evolution of protein phosphatases. Science Signaling (2017) 10: eaag1796.
+1. T. Dogan, F. Gnad, L. Phu, M. J. Chen, S. Dolld, M. P. Stokes, D. S. Kirkpatrick, K. P. Hoeflich, G. Hatzivassilio. Role of the E3 ubiquitin ligase RNF157 as a novel downstream effector linking PI3K and MAPK signaling to the cell cycle. Journal of Biological Chemistry (2017) 292/35/14311
+1. P. C. Babbitt PC, P. G. Bagos PG, A. Bairoch, A. Bateman, A. Chatonnet, M. J. Chen, D. J. Craik, R.D. Finn, D. Gloriam, D. H. Haft, B. Henrissat, G. L. Holliday, V. Isberg, Q. Kaas, D. Landsman, N. Lenfant, G. Manning, N. Nagano, N. Srinivasan, C. O'Donovan, K.D. Pruitt, R. Sowdhamini, N. D. Rawlings, M. H. Jr Saier, J. L. Sharman, M. Spedding, K. D. Tsirigos, A. Vastermark, G. Vriend. Creating a specialist protein resource network: a meeting report for the protein bioinformatics and community resources retreat. Database (2015) 
+1. P. G. Teh, M. J. Chen, J. L. Engel, C.A. Worby, G. Manning, J. E. Dixon & Ji Zhang. Identification of a mammalian-type phosphatidylglycerophosphate phosphatase in the Eubacterium Rhodopirellula baltica. Journal of Biological Chemistry (2013) 288: 5176-5185
+1. Y. Wang, X. Zhang, H. Zhang, Y. Lu, H. Huang, X. Dong, J. Chen, J. Dong, X. Yang, H Hang & T. Jiang. Coiled-coil networking shapes cell molecular machinery. Molecular Biology of the Cell (2012) 23(19): 3911-3922
+1. J. Xiao, J. L. Engel, J. Zhang, M. J. Chen, G. Manning & J. E. Dixon. Structural and functional analysis of PTPMT1, a phosphatase required for cardiolipin synthesis. Proceedings of the National Academy of Sciences of the United States of America (2011) 108:11860-11865
+1. S. Matto, E. Durrant, M. J. Chen, J. Xiao, C.S. Lazar, G. Manning, J.E. Dixon & C.A. Worby. Comparative analysis of Histophilus somni IbpA with other FIC enzymes reveals differences in substrate and nucleotide specificities. Journal of Biological Chemistry (2011)
+1. W. Cheng\*, J. Chen\*, Z. Xu, J. Yu, C. Huang, M. Jin, H. Li, M. Zhang, Y. Jin & Z. Duan. Phylogenetic and recombination analysis of human bocavirus 2. BMC Infectious and Diseases. (2011) 11:50. (* joint first author)
+1. M. Jin\*, J. Chen\*, X. Zhang, M. Zhang, H. Li, W. Cheng, N. Liu, M. Tan, T. Jiang & Z. Duan. Genetic diversity of noroviruses in Chinese adults: Potential recombination hotspots and GII-4/Den Haag-specific mutations at a putative epitope. Infection, Genetics and Evolution (2011) 11(7):1716-1726 
+1. H. Zhang\*, J. Chen\*, Y. Wang, L. Peng, X. Dong, Y. Lu, T. Jiang, & A. E. Keating. A computationally guided protein-interaction screen uncovers coiled-coil interactions involved in vesicle trafficking. Journal of Molecular Biology (2009) 392: 228-241. 
+1. K. Jensen, J. Chen, F. Murray. A simple method to improve life sciences patent searches using the cyberinfrastructure at the National Institutes of Health. First Monday (2007) Vol. 12
+
+(* denotes first authorship)
+
+# Talks and Posters
+
+1. Poster: “ClonoTracker: A Computational Framework and Clinical Tool for NGS-Based Clonality and MRD Analysis” Association of Molecular Pathology Conference (2017)
+1. Invited speaker: “Evolution of Protein Phosphatases from Yeast to Human” Keystone Symposia: The Evolution of Protein Phosphorylation (2011)
+1. Poster: “Evolution of Protein Tyrosine phosphatases from Yeast to Human”, 16th Protein Phosphorylation and Cell Signaling (2010)
+1. Poster: “Two-Stage Integration Strategy Directing the Discovery of Coiled-Coil Interactions: Application in Yeast Vesicular Trafficking,” 11th Biophysical Society of China Conference (2009).
+
+\hfill\break
+
+# Selected Projects
+
+## Methylation array analysis
+
+* I developed R packages for methylation array analysis with the focus on copy-number variation (CNV) analysis. 
+* I evaluated different methods and parameters with the results from whole-genome sequencing-based CNV analysis on the same samples from leukemia, solid and brain tumor patients.
+* The overall sensitivity and specificity are 75.2% and 83.0% respectively.
+* I developed a web app of dashboard with R Shiny to visualize the methylation array data and CNV results.
+* I also developed utility packages for cross-reactive probes of Illumina methylation array (<https://github.com/markgene/maxprobes>).
+* Code is available at <https://github.com/markgene/yamatCN> and <https://github.com/markgene/yamat>
+
+## Adaptive immune receptor repertoire
+
+* I have developed a computational pipeline for adaptive immune receptor repertoire sequencing at St Jude Children’s Research Hospital. 
+* I applied the pipeline to clonality analysis and minimal residual disease (MRD) in clinical setting. 
+* I also developed a web interface to help pathologists review and report the results (http://clonotracker.stjude.org/). 
+* I reported the work at Association of Molecular Pathology conference in 2017.
+* The light-weight command line tool is available at GitHub repo <https://github.com/markgene/clonotracker-cl>
+
+## Targeted sequencing
+
+I served the targeted sequencing assay in 2019-2020. The assay contains a gene panel focusing on childhood cancer. I
+
+* Managed the bioinformatics pipeline. The pipeline took FASTQ files and produced filtered VCF.
+* Performed technical review and interpretation for the variants.
+* Assisted the pathologists to prepare for the documentation for sign out.
+
+## Persistent cancer cells
+
+Drug-tolerant persistent cancer cells is a major non-mutation barrier to effective cancer treatment. We used scRNA-seq and bulk RNA-seq to study how persistent cells evade apoptosis upon targeted and conventional cancer therapies of i) various cell lines and ii) various drug treatment. The work has been accepted by Cell.
+
+* Identified differentially expressed genes between persistent and parental cancer cells from bulk RNA-seq.
+* Identified the pathways regulated in similar manner across drug treatments with gene set enrichment analysis.
+* Pinpointed the time point persister cancer cells changed back to a status similar to parental cells with scRNA-seq data from cells collected at different time points. In particular, pseudotime trajectory analysis was used.
+* Identified the genes differentially expressed along the pseudotime from persistent to parental cancer cells.
+* Discovered the genes were enriched in integrated stress response (ISR) pathway.
+* Investigated the relevancy between ISR pathway activation and prognosis with TCGA data.
+* Investigated the relevancy between ISR pathway activation and prognosis with public scRNA-seq data from NSCLC patients with targeted therapy.
+
+## Epigenetic regulation in CD8+ T cell asymmetric division
+
+CD8+ T cells undergo asymmetric division upon activation. I and my collaborator studied identified a SWI/SNF complex subunit plays a critical role in this process. Inhibiting the gene can improve anti-tumor immunity of CAR-T cells. We explored the mechanisms with multiple omics including RNA-seq, ChIP-seq and ATAC-seq. The work has been accepted by Nature.
+
+* Developed the computational pipeline of ATAC-seq to study chromatin accessibility changes between different conditions. The pipeline takes FASTQ files and produce accessible regions.
+* Inferred differentially accessible regions between conditions.
+* Performed transcription factor footprinting analyses.
+* Developed the computational pipeline of CUT&RUN experiment, an alternative of cross-linked ChIP-seq. The pipeline takes FASTQ files and produce the binding sites of transcription factors, histone modifications and chromatin modellers of interest.
+* Identified differentially bound sites between conditions.
+* Developed a method called Peak Set Enrichment Analysis (PSEA) to measure if the differentially bound sites or differentially accessible regions are enriched in another set of peaks/genomic regions.
+* Identified differentially expressed genes from RNA-seq.
+* Integrated RNA-seq and ATAC-seq or CUT&RUN data.
+
+
+## Orthology detection
+
+* I have developed a method to trace the evolutionary history of each human gene in Genentech. 
+* I developed i) an internal web site, ii) application programming interface and iii) a R package to access the orthology database. It has been widely used by many internal researchers to quickly profile the evolutionary history of their interested genes and families. 
+* By looking for genes of similar evolutionary profile, I narrowed the genes involved in the same biological processes for individual projects of internal collaborators. 
+
+## Genomics and the evolution of phosphatases and kinases
+
+My primary focus was dedicated to genomics and the evolution of phosphatases, when I worked for Salk Institute and UC San Diego. The result of my original work provided the most complete and clear picture of protein phosphatases and their evolutionary relationship. 
+
+* I also developed and maintained Phosphatome.Net web site, which has been visited by researchers from more than 120 countries. 
+* In additional to my work on phosphatases, I maintained the kinase web site Kinase.Com, which has more than 1100 visitors per month in average.  
+
+## Protein interaction screening
+
+During my time as a Ph.D. student, my interests focused on computational screening of protein interactions. 
+
+1. I introduced computational approaches, particularly data integration techniques, into protein interaction screening and was more efficient than other strategies at that time. 
+1. In further studies, I and my colleagues created the first genome-wide coiled-coil interaction network in yeast. The work is a valuable resource for systematic characterization of coiled coils in the shaping and regulation of a host of cellular machineries, and provides a basis for the utilization of coiled coils as domain-based probes for network perturbation and pharmacological applications. 
+
+## Virus evolution
+
+I also studied virus evolution of two viruses during my Ph.D. training. 
+
+* I found the hotspots of norovirus recombination by identifying the shared breakpoints in the GI and GII recombinants. 
+* I also found a mutation located within a predicted antigenic epitope was specific for the strain that dominates the global epidemics. This finding shed light on the mechanism through which norovirus evade herd immunity and persist in human populations. 
+* My work on bocavirus was the first study that showed the precise phylogenetic relationships of four human bocavirus species HBoV1-4. In particular, I found HBoV3 may be a recombinant between HBoV and the common ancestor of HBoV2 and HBoV4.
+
+\hfill\break
+
+# Served as Manuscript Reviewer for Peer-Reviewed Journals
+
+Nature, eLife, PNAS, BMC Biology, DNA and cell biology
+
+
+
+\fancyfoot[LO,LE]{\footnotesize This resume was generated on `r Sys.time()` using vitae R package and custom LaTeX template (\href{https://github.com/natbprice/cv}{github.com/natbprice/cv})}

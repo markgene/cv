@@ -1,0 +1,46 @@
+group_id,group,skill,details
+1,NGS,RNA-seq,
+1,NGS,DNA-seq,
+1,NGS,ChIP-seq,CUT&RUN
+1,NGS,ATAC-seq,
+1,NGS,adaptive immune repertoire sequencing,
+2,Single cell genomics,scRNA-seq,
+2,Single cell genomics,scATAC,
+2,Single cell genomics,scTCR-seq,
+2,Single cell genomics,CITE-seq,
+2,Single cell genomics,multiomics,
+3,Microarray,methylation array,
+3,Microarray,DNA microarray ,
+4,Misc. bioinformatics analyses,differential gene expression,
+4,Misc. bioinformatics analyses,differential binding,
+4,Misc. bioinformatics analyses,pathway enrichment,
+4,Misc. bioinformatics analyses,data integration,
+4,Misc. bioinformatics analyses,cancer genomics,
+4,Misc. bioinformatics analyses,phylogenetic analysis,
+5,communication,presentations,
+5,communication,dashboard design,Shiny
+5,communication,data analysis reports,"Rmarkdown, Jupyter"
+5,communication,data visualization,"ggplot2, plotly"
+6,programming languages,R,
+6,programming languages,Python,
+6,programming languages,SQL,
+6,programming languages,Perl,
+6,programming languages,Groovy,
+6,programming languages,Shell,
+7,software development,source control,"Git, GitHub"
+7,software development,workflow management,"Nextflow, Snakemake"
+7,software development,package management,Conda
+8,Web development,Django,Python
+8,Web development,Catalyst,Perl
+8,Web development,HTML,
+8,Web development,CSS,
+8,Web development,JavaScript,
+9,Data science,statistics,
+9,Data science,experimental design,
+9,Data science,regression model,
+9,Data science,machine learning,
+9,Data science,deep learning,
+9,Data science,regression model,
+9,Data science,digital signal processing,
+9,Data science,optimization,
+9,Data science,differential equations,
