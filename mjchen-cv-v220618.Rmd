@@ -261,7 +261,7 @@ cat("\n\\end{itemize}\n")
 
 I served the targeted sequencing assay in 2019-2020. The assay contains a gene panel focusing on childhood cancer. I
 
-* Managed the bioinformatics pipeline. The pipeline took FASTQ files and produced filtered VCF.
+* Managed the bioinformatics pipeline. The pipeline mapped raw sequencing data in FASTQ files, filtered alignment of low quality, called and filtered SNVs and small indels, and finally produced a list of variants saved in VCF files.
 * Performed technical review and interpretation for the variants.
 * Assisted the pathologists to prepare for the documentation for sign out.
 
