@@ -176,7 +176,35 @@ for (group in skills_formatted$group) {
 cat("\n\\end{itemize}\n")
 ```
 
+\hfill\break
 
+# Certifications
+
+\begin{itemize}
+
+\item[\ding{109}] \textbf{Deep Learning}, Coursera, Issued Jun 2018
+\begin{itemize}
+\item Neural Networks and Deep Learning (Credential ID: R8TRJBNX9PRX)
+\item Structuring Machine Learning Projects (Credential ID: 22TKKFTQWQ5B)
+\item Convolutional Neural Networks (Credential ID: EKTDEAA8VXAT)
+\item Sequence Models (Credential ID: THD78RG5DA2Y)
+\item Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization (Credential ID: KNHAVGD6KEWH)
+\end{itemize} 
+
+\item[\ding{109}] \textbf{Clinical Research}, Collaborative Institutional Training Initiative (CITI)
+
+\begin{itemize}
+\item Biomedical Responsible Conduct of Research Course 1 (Issued Mar 2017, Credential ID: 22745746)
+\item Health Information Privacy and Security (HIPS) for Clinical Investigators (Issued Mar 2017, Credential ID: 22745747)
+\item Clinical Research Coordinator (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676645)
+\item Good Clinical Practice for Clinical Trials with Investigational Drugs and Medical (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676643)
+\item Good Clinical Practice for Laboratory Staff (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676646)
+\item HSP Group 1.Bio-medical (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676642)
+\item Stem Cell Research Oversight (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676644)
+\item CITI Health Information Privacy and Security (HIPS) for Clinical Investigators (Issued Mar 2017, Credential ID: 22745747)
+\end{itemize} 
+
+\end{itemize} 
 
 \hfill\break
 
