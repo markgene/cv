@@ -72,6 +72,30 @@ publication.tb <- rorcid::orcid_works("0000-0003-1169-563X") |>
 colnames(publication.tb) <- make.names(colnames(publication.tb))
 ```
 
+
+# Professional Experience
+
+```{r experience}
+job.titles.tb %>% 
+  # Join job descriptions
+  left_join(job.descriptions, by = c("employment.summary.put.code" = "job.id")) %>%
+  # Arrange by descending begin date
+  arrange(desc(employment.summary.start.date.year.value)) %>% 
+  dplyr::mutate(accomplishments = ifelse(accomplishments == "", NA, accomplishments)) %>%
+  # dplyr::mutate(employment.summary.department.name = ifelse(employment.summary.put.code %in% c("17872201", "577519"), "", employment.summary.department.name)) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = employment.summary.role.title,
+    when = as.character(
+      glue("{month(begin_date, label = TRUE, abbr = TRUE)} {year(begin_date)} - 
+           {if_else(!is.na(end_date), 
+           paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
+    with = glue("{employer.desc}"),
+    where = glue("{employment.summary.department.name}"),
+    # where = glue(" {employment.summary.organization.address.city}, {employment.summary.organization.address.region}, {employment.summary.organization.address.country}"),
+    why = accomplishments)
+```
+
 # Education
 
 ```{r education, results = "asis"}
@@ -125,28 +149,7 @@ education.tb %>%
     why = accomplishments)
 ```
 
-# Experience
-
-```{r experience}
-job.titles.tb %>% 
-  # Join job descriptions
-  left_join(job.descriptions, by = c("employment.summary.put.code" = "job.id")) %>%
-  # Arrange by descending begin date
-  arrange(desc(employment.summary.start.date.year.value)) %>% 
-  dplyr::mutate(accomplishments = ifelse(accomplishments == "", NA, accomplishments)) %>%
-  # dplyr::mutate(employment.summary.department.name = ifelse(employment.summary.put.code %in% c("17872201", "577519"), "", employment.summary.department.name)) %>%
-  # Format as detailed entries
-  detailed_entries(
-    what = employment.summary.role.title,
-    when = as.character(
-      glue("{month(begin_date, label = TRUE, abbr = TRUE)} {year(begin_date)} - 
-           {if_else(!is.na(end_date), 
-           paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
-    with = glue("{employer.desc}"),
-    where = glue("{employment.summary.department.name}"),
-    # where = glue(" {employment.summary.organization.address.city}, {employment.summary.organization.address.region}, {employment.summary.organization.address.country}"),
-    why = accomplishments)
-```
+\hfill\break
 
 # Skills
 
@@ -327,4 +330,4 @@ Nature, eLife, PNAS, BMC Biology, DNA and cell biology
 
 
 
-\fancyfoot[LO,LE]{\footnotesize This resume was generated on `r Sys.time()` using vitae R package and custom LaTeX template (\href{https://github.com/natbprice/cv}{github.com/natbprice/cv})}
+\fancyfoot[LO,LE]{\footnotesize This resume was generated on `r Sys.time()` using vitae R package and custom LaTeX template (\href{https://ithub.com/markgene/cv}{github.com/markgene/cv})}

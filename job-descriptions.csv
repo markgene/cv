@@ -1,27 +1,27 @@
 job.id,position.desc,employer.desc,category,descId,accomplishments
-17872201,Senior Bioinformatics Research Scientist,St Jude,,,
-17872193,Bioinformatics Research Scientist,St Jude,,,"Developed pipelines for NGS applications tailored for in-house projects (such as RNA-seq, ChIP-seq, ATAC-seq and etc.)"
-17872193,Bioinformatics Research Scientist,St Jude,,,Developed NGS experiment protocols with web-lab biologists
-17872193,Bioinformatics Research Scientist,St Jude,,,Designed specific NGS experiments with collaborators
-17872193,Bioinformatics Research Scientist,St Jude,,,Integrated data from different NGS applications for different projects
-17872193,Bioinformatics Research Scientist,St Jude,,,"Investigated single cell data of various types for multiple projects (such as gene expression, cell surface proteins, TCR, chromatin accessibility); integrate multiomic data if needed."
-17872193,Bioinformatics Research Scientist,St Jude,,,Analyzed public NGS and microarray data with in-house pipelines/workflows
-17872193,Bioinformatics Research Scientist,St Jude,,,"Explored public databases for specific questions. For example, explore cancer genome data to find out association between the expression of genes of interest and clinical features; Explore public databases to find the association between SNPs and disease for genes of interest."
-17872193,Bioinformatics Research Scientist,St Jude,,,Educated bioinformatics to non-computational team members
-17872193,Bioinformatics Research Scientist,St Jude,,,"Organized seminars and meetings for immunoinformatics team, and trained new team members"
-4310501,Bioinformatics Clinical Scientist,St Jude,,,Developed the pipeline for TCR and IGH sequencing data of T- and B-cell acute lymphoblastic leukemia (ALL) patients for clinical assay of clonality and minimal residual disease.
-4310501,Bioinformatics Clinical Scientist,St Jude,,,"Developed a web application for analyzing, reporting and archiving TCR and IGH sequencing data."
-4310501,Bioinformatics Clinical Scientist,St Jude,,,"Developed and evaluate the pipeline of copy number variation (CNV) detection from methylation array data of leukemia, brain and solid tumor patients."
-4310501,Bioinformatics Clinical Scientist,St Jude,,,Developed and deployed the dashboard with R Shiny for visualizing methylation array data and CNVs detected.
-4310501,Bioinformatics Clinical Scientist,St Jude,,,Managed and maintained in-house pipeline for target sequencing assay of a gene panel focusing on childhood cancer.
-4310501,Bioinformatics Clinical Scientist,St Jude,,,Performed technical review and interpretation of variants identified from targeted sequencing assay.
-4310501,Bioinformatics Clinical Scientist,St Jude,,,Prepared for the documents of bioinformatics section for SOP and/or regulatory agency CAP.
-4310501,Bioinformatics Clinical Scientist,St Jude,,,Phylogenetic analysis for kinases of Fam20 family
+17872201,Senior Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,"Developed pipelines for NGS applications tailored for in-house projects (such as RNA-seq, ChIP-seq, ATAC-seq and etc.)"
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,Developed NGS experiment protocols with web-lab biologists
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,Designed specific NGS experiments with collaborators
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,Integrated data from different NGS applications for different projects
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,"Investigated single cell data of various types for multiple projects (such as gene expression, cell surface proteins, TCR, chromatin accessibility); integrate multiomic data if needed."
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,Analyzed public NGS and microarray data with in-house pipelines/workflows
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,"Explored public databases for specific questions. For example, explore cancer genome data to find out association between the expression of genes of interest and clinical features; Explore public databases to find the association between SNPs and disease for genes of interest."
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,Educated bioinformatics to non-computational team members
+17872193,Bioinformatics Research Scientist,"St Jude Children's Research Hospital",,,"Organized seminars and meetings for immunoinformatics team, and trained new team members"
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,Developed the pipeline for TCR and IGH sequencing data of T- and B-cell acute lymphoblastic leukemia (ALL) patients for clinical assay of clonality and minimal residual disease.
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,"Developed a web application for analyzing, reporting and archiving TCR and IGH sequencing data."
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,"Developed and evaluate the pipeline of copy number variation (CNV) detection from methylation array data of leukemia, brain and solid tumor patients."
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,Developed and deployed the dashboard with R Shiny for visualizing methylation array data and CNVs detected.
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,Managed and maintained in-house pipeline for target sequencing assay of a gene panel focusing on childhood cancer.
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,Performed technical review and interpretation of variants identified from targeted sequencing assay.
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,Prepared for the documents of bioinformatics section for SOP and/or regulatory agency CAP.
+4310501,Bioinformatics Clinical Scientist,"St Jude Children's Research Hospital",,,Phylogenetic analysis for kinases of Fam20 family
 300252,Postdoctoral researcher,Genentech,,,"Developed a new orthology detection method by integrating protein sequence similarity, phylogeny and genomic organization. "
 300252,Postdoctoral researcher,Genentech,,,Developed the database and web API for orthologys and the R package to access the data.
 300252,Postdoctoral researcher,Genentech,,,Developed the website phosphatome.net for phosphatase database and Wiki
 300252,Postdoctoral researcher,Genentech,,,Explored WES data from Foundation Medicine
-577519,Postdoctoral researcher,UCSD,,,
+577519,Postdoctoral researcher,UC San Diego,,,
 577518,Postdoctoral researcher,Salk Institute,,,Identified phosphatases from genomic sequences for various organisms from yeast to human
 577518,Postdoctoral researcher,Salk Institute,,,"Developed in-house tools for comparative genomics, particularly for kinases and phosphatases"
 577518,Postdoctoral researcher,Salk Institute,,,Phylogenetic analysis and structural comparison for PTPMT1 phosphatase
