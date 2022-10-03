@@ -213,8 +213,8 @@ cat("\n\\end{itemize}\n")
 
 # Publications
 
-1. Diego A. Rodriguez, Giovanni Quarato, Swantje Liedmann, Bart Tummers, Ting Zhang, Cliff Guy, Jeremy C. Crawford, Gustavo Palacios, Stephane Pelletier, Halime Kalkavan, Jeremy P. Shaw, Patrick Fitzgerald, Mark J. Chen, Siddharth Balachandran, and Douglas R. Green. Caspase-8 and FADD prevent spontaneous ZBP1 expression and necroptosis. Revision in Proceedings of the National Academy of Sciences.
-1. H. Kalkavan, M. J. Chen, J. C. Crawford, G. Quarato, P. Fitzgerald, S. Tait, C. R. Goding, D. R. Green. Sublethal cytochrome-c release generates drug-tolerant persisters by activation of the HRI-ATF4 pathway. Accepted by Cell.
+1. Diego A. Rodriguez, Giovanni Quarato, Swantje Liedmann, Bart Tummers, Ting Zhang, Cliff Guy, Jeremy C. Crawford, Gustavo Palacios, Stephane Pelletier, Halime Kalkavan, Jeremy P. Shaw, Patrick Fitzgerald, Mark J. Chen, Siddharth Balachandran, and Douglas R. Green. Caspase-8 and FADD prevent spontaneous ZBP1 expression and necroptosis. Proceedings of the National Academy of Sciences of the United States of America (2022)
+1. H. Kalkavan, M. J. Chen, J. C. Crawford, G. Quarato, P. Fitzgerald, S. Tait, C. R. Goding, D. R. Green. Sublethal cytochrome-c release generates drug-tolerant persisters by activation of the HRI-ATF4 pathway. Cell (2022).
 1. A. Guo, H. Huang, Z. Zhu, M. J. Chen, H. Shi, P. Sharma, J. P. Connelly, S. Liedmann, Y. Dhungana, Z. Li, D. Haydar, M. Yang, H. Beere, J. T. Yustein, C. DeRenzo, S. M. Pruett-Miller, G. Krenciute, C. W. M. Roberts, H. Chi, D. R. Green. The SWI/SNF canonical BAF complex and c-Myc cooperate to promote early fate decisions in CD8+ T cells. Nature (2022).
 1. S. Liedmann, X. Liu, C. S. Guy, J. C. Crawford, D. A. Rodriguez, D. Kuzuoglu-Ozturk, A. Guo, J. Temirov, M. J. Chen, D. Ruggero, H. Zhang, P. G. Thomas, D. R. Green. Localization of a TORC1-eIF4F translation complex during CD8+ T cell activation drives divergent cell fate. Molecular Cell (2022).
 1. H. Zhang, Q. Zhu, J. Cui, Y. Wang, M. J. Chen, X. Guo, V. Tagliabracci, J. Dixon, J. Xiao. Structure and evolution of the Fam20 kinases. Nature Communications (2018) 9:1218.
