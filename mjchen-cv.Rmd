@@ -23,6 +23,7 @@ library(vitae)
 library(lubridate)
 library(glue)
 library(rlang)
+library(tinytex)
 ```
 
 ```{r loadData}
