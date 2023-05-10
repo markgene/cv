@@ -2,7 +2,7 @@
 name: Mark J Chen
 docname: "Resume"
 fontawesome: yes
-address: "Memphis, Tennessee"
+address: "Cleveland, Ohio"
 phone: "+1 858 699 5771"
 email: "mjchen.gene@gmail.com"
 github: "markgene.github.io"
