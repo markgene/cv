@@ -94,8 +94,11 @@ job.titles.tb %>%
     with = glue("{employer.desc}"),
     where = glue("{employment.summary.department.name}"),
     # where = glue(" {employment.summary.organization.address.city}, {employment.summary.organization.address.region}, {employment.summary.organization.address.country}"),
-    why = accomplishments)
+    # why = accomplishments
+    why = NA)
 ```
+
+\hfill
 
 # Education
 
@@ -150,7 +153,7 @@ education.tb %>%
     why = accomplishments)
 ```
 
-\hfill\break
+\hfill
 
 # Skills
 
@@ -180,7 +183,7 @@ for (group in skills_formatted$group) {
 cat("\n\\end{itemize}\n")
 ```
 
-\hfill\break
+\hfill
 
 # Certifications
 
@@ -198,12 +201,12 @@ cat("\n\\end{itemize}\n")
 \item[\ding{109}] \textbf{Clinical Research}, Collaborative Institutional Training Initiative (CITI)
 
 \begin{itemize}
-\item \item Human Research Group 1 Required for all researchers registering with the Cleveland Clinic Foundation
+\item Human Research Group 1 Required for all researchers registering with the Cleveland Clinic Foundation
 \end{itemize} 
 
 \end{itemize} 
 
-\hfill\break
+\hfill
 
 # Publications
 
@@ -229,8 +232,7 @@ cat("\n\\end{itemize}\n")
 
 (* denotes first authorship)
 
-\hfill\break
-
+\hfill
 
 # Talks and Posters
 
@@ -239,7 +241,7 @@ cat("\n\\end{itemize}\n")
 1. Poster: “Evolution of Protein Tyrosine phosphatases from Yeast to Human”, 16th Protein Phosphorylation and Cell Signaling (2010)
 1. Poster: “Two-Stage Integration Strategy Directing the Discovery of Coiled-Coil Interactions: Application in Yeast Vesicular Trafficking,” 11th Biophysical Society of China Conference (2009).
 
-\hfill\break
+\hfill
 
 # Selected Projects
 
@@ -322,7 +324,7 @@ I also studied virus evolution of two viruses during my Ph.D. training.
 * I also found a mutation located within a predicted antigenic epitope was specific for the strain that dominates the global epidemics. This finding shed light on the mechanism through which norovirus evade herd immunity and persist in human populations. 
 * My work on bocavirus was the first study that showed the precise phylogenetic relationships of four human bocavirus species HBoV1-4. In particular, I found HBoV3 may be a recombinant between HBoV and the common ancestor of HBoV2 and HBoV4.
 
-\hfill\break
+\hfill
 
 # Served as Manuscript Reviewer for Peer-Reviewed Journals
 
