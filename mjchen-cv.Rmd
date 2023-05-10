@@ -3,7 +3,7 @@ name: Mark J Chen
 docname: "Resume"
 fontawesome: yes
 address: "Cleveland, Ohio"
-phone: "+1 858 699 5771"
+phone: "+1 216 978 4932"
 email: "mjchen.gene@gmail.com"
 github: "markgene.github.io"
 date: "`r format(Sys.time(), '%B %Y')`"
@@ -198,14 +198,7 @@ cat("\n\\end{itemize}\n")
 \item[\ding{109}] \textbf{Clinical Research}, Collaborative Institutional Training Initiative (CITI)
 
 \begin{itemize}
-\item Biomedical Responsible Conduct of Research Course 1 (Issued Mar 2017, Credential ID: 22745746)
-\item Health Information Privacy and Security (HIPS) for Clinical Investigators (Issued Mar 2017, Credential ID: 22745747)
-\item Clinical Research Coordinator (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676645)
-\item Good Clinical Practice for Clinical Trials with Investigational Drugs and Medical (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676643)
-\item Good Clinical Practice for Laboratory Staff (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676646)
-\item HSP Group 1.Bio-medical (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676642)
-\item Stem Cell Research Oversight (Issued Mar 2020, Expired Mar 2023, Credential ID: 34676644)
-\item CITI Health Information Privacy and Security (HIPS) for Clinical Investigators (Issued Mar 2017, Credential ID: 22745747)
+\item \item Human Research Group 1 Required for all researchers registering with the Cleveland Clinic Foundation
 \end{itemize} 
 
 \end{itemize} 
@@ -214,7 +207,9 @@ cat("\n\\end{itemize}\n")
 
 # Publications
 
-1. Diego A. Rodriguez, Giovanni Quarato, Swantje Liedmann, Bart Tummers, Ting Zhang, Cliff Guy, Jeremy C. Crawford, Gustavo Palacios, Stephane Pelletier, Halime Kalkavan, Jeremy P. Shaw, Patrick Fitzgerald, Mark J. Chen, Siddharth Balachandran, and Douglas R. Green. Caspase-8 and FADD prevent spontaneous ZBP1 expression and necroptosis. Proceedings of the National Academy of Sciences of the United States of America (2022)
+1. P. Sharma, A. Guo, G. Palacios, M. J. Chen, D. Haydar, A. Mishra, J. Peng, G. Krenciute, E. S. Glazer, H. Chi, D. R. Green. Rapid metabolic regulation of a novel arginine methylation of KCa3.1 determines T cell fate. Submitted to Nature
+1. G. Quarato, L. Mari, N. J. Barrows, M. Yang, S. Ruehl, M. J. Chen, Cliff S. Guy, J. Low, T. Chen, D. R. Green. Autophagy restricts Parkin-Mediated Cell Death. Accepted by Science Advances (2023)
+1. D. A. Rodriguez, G. Quarato, S. Liedmann, B. Tummers, T. Zhang, C. Guy, J. C. Crawford, G. Palacios, S. Pelletier, H. Kalkavan, J. P. Shaw, P. Fitzgerald, M. J. Chen, S. Balachandran, and D. R. Green. Caspase-8 and FADD prevent spontaneous ZBP1 expression and necroptosis. Proceedings of the National Academy of Sciences of the United States of America (2022)
 1. H. Kalkavan, M. J. Chen, J. C. Crawford, G. Quarato, P. Fitzgerald, S. Tait, C. R. Goding, D. R. Green. Sublethal cytochrome-c release generates drug-tolerant persisters by activation of the HRI-ATF4 pathway. Cell (2022).
 1. A. Guo, H. Huang, Z. Zhu, M. J. Chen, H. Shi, P. Sharma, J. P. Connelly, S. Liedmann, Y. Dhungana, Z. Li, D. Haydar, M. Yang, H. Beere, J. T. Yustein, C. DeRenzo, S. M. Pruett-Miller, G. Krenciute, C. W. M. Roberts, H. Chi, D. R. Green. The SWI/SNF canonical BAF complex and c-Myc cooperate to promote early fate decisions in CD8+ T cells. Nature (2022).
 1. S. Liedmann, X. Liu, C. S. Guy, J. C. Crawford, D. A. Rodriguez, D. Kuzuoglu-Ozturk, A. Guo, J. Temirov, M. J. Chen, D. Ruggero, H. Zhang, P. G. Thomas, D. R. Green. Localization of a TORC1-eIF4F translation complex during CD8+ T cell activation drives divergent cell fate. Molecular Cell (2022).
